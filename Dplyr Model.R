@@ -90,3 +90,4 @@ write.csv(cmpdf,"Censor Data 5 percent.csv",row.names = FALSE)
 
 bengen30 <- balances[,30]
 print(paste("Bengen 30-year failure= ",sum(bengen30/n <= 0)/n))
+

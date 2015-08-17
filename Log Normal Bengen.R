@@ -121,5 +121,6 @@ print(noquote(paste("Mean TPV= $",format(round(as.numeric(mean(tpv)), 0), nsmall
 
 
 hist(tpv)
+#
 
 

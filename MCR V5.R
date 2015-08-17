@@ -202,3 +202,4 @@ print(resultsframe)
 # myhist <- hist(lives,breaks=51)
 hista <- hist(lives, breaks=seq(65,115,l=51),main=c("Simulated Life Expectancies\n",hh[household],"Household"))
 points(socmd[,1],socmd[,4+household]*10)
+

@@ -18,7 +18,7 @@ milevsky <- function (mu, sigma, withdrawalrate,lifeexpect) {
   # print(paste("a is ", a, " b is ", b,"wr%=",wr,sep=" "))
   
   prob <- pgamma(withdrawalrate,shape=a,scale=b)
-  # spv <- 1/(mu - sigma^2 + lambda) 
+  # spv <- 1/(mu - sigma^2 + lambda) #
 }
 
 

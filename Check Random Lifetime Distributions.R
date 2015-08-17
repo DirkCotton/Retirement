@@ -67,4 +67,3 @@ p <- ggplot(lifeExpect) +
                     breaks=c("#c0392b", "black"),
                     labels=c("10,000 Simulated Lifetimes", "Actuarial Expectations"))
 p
-
