@@ -1,20 +1,28 @@
-
+cat("\014")
 
 randomz <- FALSE # If TRUE, generate a new set of random market returns. If FALSE, input canned random returns from file
+graphData <-  matrix(nrow = 27,ncol = 4)
+jloop <- 0
 
+for (wr in seq(.02,.06,by=.005)) {
+  for (household in 1:3) {
 
+    jloop <- jloop + 1
+    
 # Set initial values
 
 # set.seed(27514)
-household <- 1 # 1= male, 2= female, 3=couple 
+# household <- 3 # 1= male, 2= female, 3=couple 
+hh <- c("Male","Female","Couple")
 rage <- 65 # retirement age
-n <- 1000
+n <- 10000
 mu <- .05
 sigma <- .11
 rage <- 65
 portfolio <- 1000000 # $1,000000
 yrs <- 50 # years of market returns
-wr = .05 # percentage of initial portfolio value to spend annually
+# wr = .05
+# percentage of initial portfolio value to spend annually
 spend <- wr * portfolio # dollar amount to spend annually
 balances <- matrix(nrow=n,ncol=yrs)
 ageRuined <- rep(n,0)
@@ -70,6 +78,9 @@ for (k in 1:n) {
 # Create a boolean vector "ruinBeforeDeath" that is TRUE if the portfolio was depleted before death
 
 ruinBeforeDeath <- (ageRuined < ageDied)
+cat("\n\nDeath before ruin",n-sum(ruinBeforeDeath),sep=" ")
+
+cat("\n\nRuin before death",sum(ruinBeforeDeath),sep=" ")
 
 # Display results: vectors of events and censoring
 
@@ -89,5 +100,15 @@ write.csv(cmpdf,"Censor Data 5 percent.csv",row.names = FALSE)
 # Find Bengen 30-year fixed survival rate
 
 bengen30 <- balances[,30]
-print(paste("Bengen 30-year failure= ",sum(bengen30/n <= 0)/n))
+# print(paste("\nBengen 30-year failure= ",sum(bengen30/n <= 0)/n))
 
+graphData[jloop,1] <- wr
+graphData[jloop,2] <- hh[household]
+graphData[jloop,3] <- sum(ruinBeforeDeath)/n
+graphData[jloop,4] <- sum(bengen30/n <= 0)/n
+
+  }
+}
+graphData.df <- data.frame(graphData)
+colnames(graphData.df) <- c("WithdrawalRate","Gender","PRuin","Bengen")
+ggplot(data=graphData.df, aes(x=WithdrawalRate, y=PRuin, group=Gender)) + geom_line()

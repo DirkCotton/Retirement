@@ -10,18 +10,20 @@ years <- 30  ## Number of years in each simulated scenario
 
 mu <- .05  ## Average portfolio rate of return  
 
-sigma <- .12  ## Portfolio standard deviation  
+sigma <- .11  ## Portfolio standard deviation  
 
 sossec <- 0  ## annual Social Security benefit  
 
 portfolio <- 1000000  ## Initial portfolio value  
 
-normalspend <- .1*portfolio
+normalspend <- .04*portfolio
+
+for (normalspend in seq(20000,60000,5000)) {
 x <- 11  ## Soc Sec kicks in after x years.  
 ## *********************  
 
 
-n <- 1000  ## Number of samples to generate   
+n <- 10000  ## Number of samples to generate   
 
 s <- normalspend + sossec   ## Set first x years of spending to s, before Soc Sec kicks in. .  
 decline <- .0  ## annual decline in spending  
@@ -30,9 +32,16 @@ withdrawal <- normalspend/portfolio  ## Annual spending percentage of initial po
 spend <- withdrawal*portfolio  ## Annual spending amount   
 
 ## Create log-normal distribution of returns  
+# to randomize use the next two statements
+# data <- matrix(rlnorm(n*years,mu,sigma),n,years)
+# data <- data.frame(data)
+
+# to use a pre-generated files of random returns use the following two lines
+data <- read.csv("Random Market Returns Log-N 10Kx50.csv",header = FALSE)
+data <- data[,1:30]
 
 for(w in 1:n){
-  data <- matrix(rlnorm(n*years,mu,sigma),n,years) 
+
 }
 means <- rep(1,n)
 tpv <- rep(portfolio, n)
@@ -122,5 +131,5 @@ print(noquote(paste("Mean TPV= $",format(round(as.numeric(mean(tpv)), 0), nsmall
 
 hist(tpv)
 #
-
+}
 

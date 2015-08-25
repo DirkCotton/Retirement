@@ -29,7 +29,7 @@ sigma <- .12 # expected portfolio standard deviation #
 lifeexpect <- 18.9 # remaining life expectancy #
 
 
-withdrawalrate <- .06
+withdrawalrate <- .04
 # withdrawal rate #
 
 prob <- milevsky (mu, sigma, withdrawalrate,lifeexpect)
