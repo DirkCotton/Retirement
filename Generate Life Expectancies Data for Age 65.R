@@ -8,7 +8,7 @@
 #
 
 n <- 10000
-household <- 1
+household <- 3
 rage <- 65
 
 soc <- read.csv("Annual Mortality.csv", header=TRUE,nrows=115) 
@@ -46,4 +46,4 @@ for (j in 1:n) {
 }
 
 print(paste("household=",household,sep=" "))
-write.table(samplelives,"Male Random Lifetimes from Age 65.csv",row.names=FALSE,col.names=FALSE)
+write.table(samplelives,"Joint Random Lifetimes from Age 65.csv",row.names=FALSE,col.names=FALSE)
