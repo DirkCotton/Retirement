@@ -16,9 +16,9 @@ sossec <- 0  ## annual Social Security benefit
 
 portfolio <- 1000000  ## Initial portfolio value  
 
-normalspend <- .05*portfolio
+normalspend <- .04*portfolio
 
-for (normalspend in 40000) {
+for (normalspend in seq(from=25000, to=55000, by=5000)) {
 x <- 11  ## Soc Sec kicks in after x years.  
 ## *********************  
 
