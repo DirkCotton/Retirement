@@ -16,9 +16,9 @@ sossec <- 0  ## annual Social Security benefit
 
 portfolio <- 1000000  ## Initial portfolio value  
 
-normalspend <- .04*portfolio
+normalspend <- .05*portfolio
 
-for (normalspend in seq(20000,60000,5000)) {
+for (normalspend in 40000) {
 x <- 11  ## Soc Sec kicks in after x years.  
 ## *********************  
 
@@ -33,12 +33,12 @@ spend <- withdrawal*portfolio  ## Annual spending amount
 
 ## Create log-normal distribution of returns  
 # to randomize use the next two statements
-# data <- matrix(rlnorm(n*years,mu,sigma),n,years)
-# data <- data.frame(data)
+data <- matrix(rlnorm(n*years,mu,sigma),n,years)
+data <- data.frame(data)
 
 # to use a pre-generated files of random returns use the following two lines
-data <- read.csv("Random Market Returns Log-N 10Kx50.csv",header = FALSE)
-data <- data[,1:30]
+# data <- read.csv("Random Market Returns Log-N 10Kx50.csv",header = FALSE)
+# data <- data[,1:30]
 
 for(w in 1:n){
 
@@ -129,7 +129,7 @@ print(noquote(" "))
 print(noquote(paste("Mean TPV= $",format(round(as.numeric(mean(tpv)), 0), nsmall=0, big.mark=",") ,"  Median TPV= $",format(round(as.numeric(median(tpv)), 0), nsmall=0, big.mark=",") ,sep="")))
 
 
-hist(tpv)
+#hist(tpv)
 #
 }
 

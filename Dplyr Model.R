@@ -1,11 +1,11 @@
 cat("\014")
 
-randomz <- FALSE # If TRUE, generate a new set of random market returns. If FALSE, input canned random returns from file
+randomz <- TRUE # If TRUE, generate a new set of random market returns. If FALSE, input canned random returns from file
 graphData <-  matrix(nrow = 27,ncol = 4)
 jloop <- 0
 
-for (wr in seq(.02,.06,by=.005)) {
-  for (household in 1:3) {
+for (wr in .05) {
+  for (household in 1) {
 
     jloop <- jloop + 1
     
@@ -84,7 +84,7 @@ cat("\n\nRuin before death",sum(ruinBeforeDeath),sep=" ")
 
 # Display results: vectors of events and censoring
 
-cat("Withdrawal rate= ",wr," Probability of Ruin= ",sum(ruinBeforeDeath)/n)
+cat("  Withdrawal rate= ",wr," Probability of Ruin= ",sum(ruinBeforeDeath)/n," Household is ",hh[household],sep=" ")
 
 # build event and censor vectors for analyses. If died first, event <- age died and censor <- 0 (censored). If ruined
 # first, event <- age when ruined and censor <- 1 (not censored). If died and ruined in the same year, that is a

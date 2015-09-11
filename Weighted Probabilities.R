@@ -9,7 +9,7 @@ pAliveandRuined <- pRuin
 
 for (i in 1:36) {
   pRuin[i] <- sum(faildata <= rages[i] )/length(faildata)
-  pAlive[i] <- 1- (sum(lifeSpanMale$V1 <= rages[i])/length(lifeSpanMale$V1))
+  pAlive[i] <- 1- (sum(lifeSpanMale$V1 <= rages[i])/length(lifeSpanMale$V1)) 
   pAliveandRuined[i] <- (pRuin[i] * pAlive [i] ) # weighted prob of survival
 }
 
@@ -21,5 +21,5 @@ plta <- ggplot(data=allData.L,aes(x=rages, y=value, group=variable,color=variabl
   geom_line() +
   ggtitle("Probability Alive and Ruined by Age") +
   labs(x="Age", y="Probability of Ruin") +
-  scale_y_continuous(breaks = seq(0,1,by = .05)) 
+  scale_y_continuous(breaks = seq(0,1,by = .05),limits=c(.5,1)) 
 plta
